@@ -1,0 +1,131 @@
+import type { Meta, StoryObj } from "@storybook/react-native"
+import * as React from "react"
+import { View } from "react-native"
+import {
+  ContextMenu,
+  ContextMenuCheckboxItem,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuRadioGroup,
+  ContextMenuRadioItem,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu"
+import { Text } from "@/components/ui/text"
+
+function TriggerArea() {
+  return (
+    <ContextMenuTrigger className="border-border h-36 w-full items-center justify-center rounded-md border border-dashed">
+      <Text variant="muted">Long press here</Text>
+    </ContextMenuTrigger>
+  )
+}
+
+function ContextMenuDemo() {
+  const [showBookmarks, setShowBookmarks] = React.useState(true)
+  const [showUrls, setShowUrls] = React.useState(false)
+  const [person, setPerson] = React.useState("pedro")
+  return (
+    <ContextMenu relativeTo="trigger">
+      <TriggerArea />
+      <ContextMenuContent className="w-64">
+        <ContextMenuItem inset>
+          <Text>Back</Text>
+          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem inset disabled>
+          <Text>Forward</Text>
+          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem inset>
+          <Text>Reload</Text>
+          <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuSub>
+          <ContextMenuSubTrigger inset>
+            <Text>More tools</Text>
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            <ContextMenuItem>
+              <Text>Save page</Text>
+            </ContextMenuItem>
+            <ContextMenuItem>
+              <Text>Create shortcut</Text>
+            </ContextMenuItem>
+            <ContextMenuSeparator />
+            <ContextMenuItem variant="destructive">
+              <Text>Delete</Text>
+            </ContextMenuItem>
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+        <ContextMenuSeparator />
+        <ContextMenuCheckboxItem
+          checked={showBookmarks}
+          onCheckedChange={setShowBookmarks}
+          closeOnPress={false}
+        >
+          <Text>Show bookmarks</Text>
+        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem
+          checked={showUrls}
+          onCheckedChange={setShowUrls}
+          closeOnPress={false}
+        >
+          <Text>Show full URLs</Text>
+        </ContextMenuCheckboxItem>
+        <ContextMenuSeparator />
+        <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
+          <ContextMenuLabel inset>People</ContextMenuLabel>
+          <ContextMenuRadioItem value="pedro" closeOnPress={false}>
+            <Text>Pedro Duarte</Text>
+          </ContextMenuRadioItem>
+          <ContextMenuRadioItem value="colm" closeOnPress={false}>
+            <Text>Colm Tuite</Text>
+          </ContextMenuRadioItem>
+        </ContextMenuRadioGroup>
+      </ContextMenuContent>
+    </ContextMenu>
+  )
+}
+
+const meta = {
+  title: "Components/Context Menu",
+  component: ContextMenu,
+} satisfies Meta<typeof ContextMenu>
+
+export default meta
+
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {
+  render: () => <ContextMenuDemo />,
+}
+
+export const Simple: Story = {
+  render: () => (
+    <View>
+      <ContextMenu relativeTo="trigger">
+        <TriggerArea />
+        <ContextMenuContent className="w-48">
+          <ContextMenuItem>
+            <Text>Profile</Text>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            <Text>Billing</Text>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            <Text>Team</Text>
+          </ContextMenuItem>
+          <ContextMenuItem>
+            <Text>Subscription</Text>
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+    </View>
+  ),
+}

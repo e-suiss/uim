@@ -1,0 +1,531 @@
+{
+  "name": "esuiss-uim",
+  "homepage": "https://github.com/e-suiss/uim",
+  "stylesheet": "styles/global.css",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "ui",
+      "title": "Accordion",
+      "dependencies": [
+        "@rn-primitives/accordion",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "text"
+      ],
+      "files": [
+        "components/ui/accordion.tsx"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "ui",
+      "title": "Alert Dialog",
+      "dependencies": [
+        "@rn-primitives/alert-dialog",
+        "cn",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "button",
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/alert-dialog.tsx"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "ui",
+      "title": "Alert",
+      "dependencies": [
+        "cn",
+        "phosphor-react-native",
+        "react-native-svg"
+      ],
+      "requires": [
+        "icon",
+        "text"
+      ],
+      "files": [
+        "components/ui/alert.tsx"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "ui",
+      "title": "Aspect Ratio",
+      "dependencies": [
+        "@rn-primitives/aspect-ratio"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/aspect-ratio.tsx"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "ui",
+      "title": "Avatar",
+      "dependencies": [
+        "@rn-primitives/avatar",
+        "cn"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/avatar.tsx"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "ui",
+      "title": "Badge",
+      "dependencies": [
+        "@rn-primitives/slot",
+        "class-variance-authority",
+        "cn"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/badge.tsx"
+      ]
+    },
+    {
+      "name": "button",
+      "type": "ui",
+      "title": "Button",
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/button.tsx"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "ui",
+      "title": "Card",
+      "dependencies": [
+        "cn"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/card.tsx"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "ui",
+      "title": "Checkbox",
+      "dependencies": [
+        "@rn-primitives/checkbox",
+        "cn",
+        "phosphor-react-native",
+        "react-native-svg"
+      ],
+      "requires": [
+        "icon"
+      ],
+      "files": [
+        "components/ui/checkbox.tsx"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "ui",
+      "title": "Collapsible",
+      "dependencies": [
+        "@rn-primitives/collapsible"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/collapsible.tsx"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "ui",
+      "title": "Context Menu",
+      "dependencies": [
+        "@rn-primitives/context-menu",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/context-menu.tsx"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "ui",
+      "title": "Dialog",
+      "dependencies": [
+        "@rn-primitives/dialog",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "native-only-animated-view"
+      ],
+      "files": [
+        "components/ui/dialog.tsx"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "ui",
+      "title": "Dropdown Menu",
+      "dependencies": [
+        "@rn-primitives/dropdown-menu",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/dropdown-menu.tsx"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "ui",
+      "title": "Hover Card",
+      "dependencies": [
+        "@rn-primitives/hover-card",
+        "cn",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/hover-card.tsx"
+      ]
+    },
+    {
+      "name": "icon",
+      "type": "ui",
+      "title": "Icon",
+      "dependencies": [
+        "cn",
+        "phosphor-react-native",
+        "react-native-svg",
+        "uniwind"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/icon.tsx"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "ui",
+      "title": "Input",
+      "dependencies": [
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/input.tsx"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "ui",
+      "title": "Label",
+      "dependencies": [
+        "@rn-primitives/label",
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/label.tsx"
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "ui",
+      "title": "Menubar",
+      "dependencies": [
+        "@rn-primitives/menubar",
+        "@rn-primitives/portal",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/menubar.tsx"
+      ]
+    },
+    {
+      "name": "native-only-animated-view",
+      "type": "ui",
+      "title": "Native Only Animated View",
+      "dependencies": [
+        "react-native-reanimated",
+        "react-native-worklets"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/native-only-animated-view.tsx"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "ui",
+      "title": "Popover",
+      "dependencies": [
+        "@rn-primitives/popover",
+        "cn",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/popover.tsx"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "ui",
+      "title": "Progress",
+      "dependencies": [
+        "@rn-primitives/progress",
+        "cn",
+        "react-native-reanimated",
+        "react-native-worklets"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/progress.tsx"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "ui",
+      "title": "Radio Group",
+      "dependencies": [
+        "@rn-primitives/radio-group",
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/radio-group.tsx"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "ui",
+      "title": "Select",
+      "dependencies": [
+        "@rn-primitives/select",
+        "cn",
+        "phosphor-react-native",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-svg",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "icon",
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/select.tsx"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "ui",
+      "title": "Separator",
+      "dependencies": [
+        "@rn-primitives/separator",
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/separator.tsx"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "ui",
+      "title": "Skeleton",
+      "dependencies": [
+        "cn",
+        "react-native-reanimated",
+        "react-native-worklets"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/skeleton.tsx"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "ui",
+      "title": "Switch",
+      "dependencies": [
+        "@rn-primitives/switch",
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/switch.tsx"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "ui",
+      "title": "Tabs",
+      "dependencies": [
+        "@rn-primitives/tabs",
+        "cn"
+      ],
+      "requires": [
+        "text"
+      ],
+      "files": [
+        "components/ui/tabs.tsx"
+      ]
+    },
+    {
+      "name": "text",
+      "type": "ui",
+      "title": "Text",
+      "dependencies": [
+        "@rn-primitives/slot",
+        "class-variance-authority",
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/text.tsx"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "ui",
+      "title": "Textarea",
+      "dependencies": [
+        "cn"
+      ],
+      "requires": [],
+      "files": [
+        "components/ui/textarea.tsx"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "ui",
+      "title": "Toggle Group",
+      "dependencies": [
+        "@rn-primitives/toggle-group",
+        "class-variance-authority",
+        "cn"
+      ],
+      "requires": [
+        "icon",
+        "text",
+        "toggle"
+      ],
+      "files": [
+        "components/ui/toggle-group.tsx"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "ui",
+      "title": "Toggle",
+      "dependencies": [
+        "@rn-primitives/toggle",
+        "class-variance-authority",
+        "cn"
+      ],
+      "requires": [
+        "icon",
+        "text"
+      ],
+      "files": [
+        "components/ui/toggle.tsx"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "ui",
+      "title": "Tooltip",
+      "dependencies": [
+        "@rn-primitives/tooltip",
+        "cn",
+        "react-native-reanimated",
+        "react-native-screens",
+        "react-native-worklets"
+      ],
+      "requires": [
+        "native-only-animated-view",
+        "text"
+      ],
+      "files": [
+        "components/ui/tooltip.tsx"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "components/ui/*.tsx",
+    "scripts/*.mjs",
+    "packages/cli/index.mjs",
+    "stories/**/*.stories.tsx",
+    ".rnstorybook/*.{ts,tsx}"
+  ],
+  "project": [
+    "components/**/*.{ts,tsx}",
+    "scripts/**/*.mjs",
+    "packages/cli/**/*.mjs",
+    ".rnstorybook/**/*.{ts,tsx}",
+    "stories/**/*.tsx",
+    "*.{ts,tsx}"
+  ],
+  "ignoreDependencies": ["expo-updates"]
+}

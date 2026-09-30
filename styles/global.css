@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "uniwind";
+
+@layer theme {
+  :root {
+    @variant light {
+      --color-background: #ffffff;
+      --color-foreground: #000000;
+      --color-card: #ffffff;
+      --color-card-foreground: #000000;
+      --color-popover: #ffffff;
+      --color-popover-foreground: #000000;
+      --color-primary: #0088ff;
+      --color-primary-foreground: #ffffff;
+      --color-secondary: rgb(118 118 128 / 0.12);
+      --color-secondary-foreground: #000000;
+      --color-muted: #f2f2f7;
+      --color-muted-foreground: rgb(60 60 67 / 0.6);
+      --color-accent: rgb(118 118 128 / 0.12);
+      --color-accent-foreground: #000000;
+      --color-destructive: #ff383c;
+      --color-border: rgb(60 60 67 / 0.12);
+      --color-input: #c6c6c8;
+      --color-ring: #0088ff;
+      --color-chart-1: #00c0e8;
+      --color-chart-2: #0088ff;
+      --color-chart-3: #6155f5;
+      --color-chart-4: #cb30e0;
+      --color-chart-5: #ff2d55;
+    }
+
+    @variant dark {
+      --color-background: #000000;
+      --color-foreground: #ffffff;
+      --color-card: #1c1c1e;
+      --color-card-foreground: #ffffff;
+      --color-popover: #2c2c2e;
+      --color-popover-foreground: #ffffff;
+      --color-primary: #0091ff;
+      --color-primary-foreground: #ffffff;
+      --color-secondary: rgb(118 118 128 / 0.24);
+      --color-secondary-foreground: #ffffff;
+      --color-muted: #1c1c1e;
+      --color-muted-foreground: rgb(235 235 245 / 0.6);
+      --color-accent: rgb(118 118 128 / 0.24);
+      --color-accent-foreground: #ffffff;
+      --color-destructive: #ff4245;
+      --color-border: rgb(84 84 88 / 0.5);
+      --color-input: #38383a;
+      --color-ring: #0091ff;
+      --color-chart-1: #3cd3fe;
+      --color-chart-2: #0091ff;
+      --color-chart-3: #6d7cff;
+      --color-chart-4: #db34f2;
+      --color-chart-5: #ff375f;
+    }
+  }
+}
+
+@theme {
+  --radius-sm: 0.45rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.05rem;
+  --radius-2xl: 1.35rem;
+  --radius-3xl: 1.65rem;
+  --radius-4xl: 1.95rem;
+}

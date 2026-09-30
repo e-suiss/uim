@@ -1,0 +1,26 @@
+{
+  "name": "@esuiss/uim",
+  "version": "0.0.0",
+  "description": "Add esuiss components to Expo projects.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-suiss/uim.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/e-suiss/uim",
+  "type": "module",
+  "bin": {
+    "esuiss-uim": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "lib"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
