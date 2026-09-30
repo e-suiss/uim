@@ -13,7 +13,7 @@ const { name, version } = JSON.parse(
 const usage = `${name} ${version}
 
 Usage:
-  npx ${name} init [options]              set up Uniwind, the theme, and the button
+  npx ${name} init [options]              set up Uniwind or NativeWind, the theme, and the button
   npx ${name} add <component...> [options] add components, e.g. add button dialog
 
 Options:
@@ -21,11 +21,13 @@ Options:
   --diff           show how local files differ from the registry
   -a, --all        add every component
   -y, --yes        skip confirmation prompts
+  -s, --styling <uniwind|nativewind>
+                   styling library (detected from the project when omitted)
   -c, --cwd <dir>  project directory (defaults to the current directory)
   -h, --help       show this help
   -v, --version    show the version
 
-Supports Expo projects with TypeScript.`
+Supports React Native and Expo projects with TypeScript.`
 
 function parseArgs(args) {
   const options = {
@@ -55,6 +57,13 @@ function parseArgs(args) {
       case "--all":
         options.all = true
         break
+      case "-s":
+      case "--styling": {
+        const styling = args[++index]
+        if (!styling) throw new CliError(`${arg} needs uniwind or nativewind.`)
+        options.styling = styling
+        break
+      }
       case "-c":
       case "--cwd": {
         const dir = args[++index]

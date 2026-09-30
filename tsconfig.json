@@ -13,5 +13,5 @@
     ".rnstorybook/**/*.tsx",
     "uniwind-types.d.ts"
   ],
-  "exclude": ["node_modules", "packages"]
+  "exclude": ["node_modules", "packages", "nativewind"]
 }

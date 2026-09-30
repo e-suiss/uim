@@ -5,7 +5,8 @@
     "scripts/*.mjs",
     "packages/cli/index.mjs",
     "stories/**/*.stories.tsx",
-    ".rnstorybook/*.{ts,tsx}"
+    ".rnstorybook/*.{ts,tsx}",
+    "nativewind/components/ui/*.tsx"
   ],
   "project": [
     "components/**/*.{ts,tsx}",
@@ -13,7 +14,8 @@
     "packages/cli/**/*.mjs",
     ".rnstorybook/**/*.{ts,tsx}",
     "stories/**/*.tsx",
-    "*.{ts,tsx}"
+    "*.{ts,tsx}",
+    "nativewind/**/*.tsx"
   ],
   "ignoreDependencies": ["expo-updates"]
 }

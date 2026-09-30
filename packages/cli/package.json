@@ -1,7 +1,7 @@
 {
   "name": "@esuiss/uim",
   "version": "0.0.0",
-  "description": "Add esuiss components to Expo projects.",
+  "description": "Add esuiss components to React Native and Expo projects.",
   "license": "MIT",
   "repository": {
     "type": "git",

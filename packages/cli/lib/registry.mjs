@@ -42,6 +42,13 @@ export function resolveItems(registry, names) {
   return ordered
 }
 
-export async function fetchStylesheet(registry) {
-  return fetchText(registry.stylesheet)
+export async function fetchStylesheet(registry, styling) {
+  return fetchText(registry.styles[styling].stylesheet)
+}
+
+export function sourceOf(registry, item, file, styling) {
+  const { directory } = registry.styles[styling]
+  return directory && item.overrides?.includes(styling)
+    ? `${directory}/${file}`
+    : file
 }

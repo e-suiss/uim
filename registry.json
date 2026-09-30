@@ -1,39 +1,69 @@
 {
   "name": "esuiss-uim",
   "homepage": "https://github.com/e-suiss/uim",
-  "stylesheet": "styles/global.css",
+  "styles": {
+    "uniwind": {
+      "stylesheet": "styles/uniwind.css"
+    },
+    "nativewind": {
+      "stylesheet": "styles/nativewind.css",
+      "directory": "nativewind"
+    }
+  },
   "items": [
     {
       "name": "accordion",
       "type": "ui",
       "title": "Accordion",
-      "dependencies": [
-        "@rn-primitives/accordion",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/accordion",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/accordion",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "text"
       ],
       "files": [
         "components/ui/accordion.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "alert-dialog",
       "type": "ui",
       "title": "Alert Dialog",
-      "dependencies": [
-        "@rn-primitives/alert-dialog",
-        "cn",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/alert-dialog",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/alert-dialog",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "button",
         "native-only-animated-view",
@@ -41,32 +71,50 @@
       ],
       "files": [
         "components/ui/alert-dialog.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "alert",
       "type": "ui",
       "title": "Alert",
-      "dependencies": [
-        "cn",
-        "phosphor-react-native",
-        "react-native-svg"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn",
+          "phosphor-react-native",
+          "react-native-svg"
+        ],
+        "nativewind": [
+          "cn",
+          "phosphor-react-native",
+          "react-native-svg"
+        ]
+      },
       "requires": [
         "icon",
         "text"
       ],
       "files": [
         "components/ui/alert.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "aspect-ratio",
       "type": "ui",
       "title": "Aspect Ratio",
-      "dependencies": [
-        "@rn-primitives/aspect-ratio"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/aspect-ratio"
+        ],
+        "nativewind": [
+          "@rn-primitives/aspect-ratio"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/aspect-ratio.tsx"
@@ -76,10 +124,16 @@
       "name": "avatar",
       "type": "ui",
       "title": "Avatar",
-      "dependencies": [
-        "@rn-primitives/avatar",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/avatar",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/avatar",
+          "cn"
+        ]
+      },
       "requires": [
         "text"
       ],
@@ -91,71 +145,114 @@
       "name": "badge",
       "type": "ui",
       "title": "Badge",
-      "dependencies": [
-        "@rn-primitives/slot",
-        "class-variance-authority",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/slot",
+          "class-variance-authority",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/slot",
+          "class-variance-authority",
+          "cn"
+        ]
+      },
       "requires": [
         "text"
       ],
       "files": [
         "components/ui/badge.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "button",
       "type": "ui",
       "title": "Button",
-      "dependencies": [
-        "class-variance-authority",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "class-variance-authority",
+          "cn"
+        ],
+        "nativewind": [
+          "class-variance-authority",
+          "cn"
+        ]
+      },
       "requires": [
         "text"
       ],
       "files": [
         "components/ui/button.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "card",
       "type": "ui",
       "title": "Card",
-      "dependencies": [
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn"
+        ],
+        "nativewind": [
+          "cn"
+        ]
+      },
       "requires": [
         "text"
       ],
       "files": [
         "components/ui/card.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "checkbox",
       "type": "ui",
       "title": "Checkbox",
-      "dependencies": [
-        "@rn-primitives/checkbox",
-        "cn",
-        "phosphor-react-native",
-        "react-native-svg"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/checkbox",
+          "cn",
+          "phosphor-react-native",
+          "react-native-svg"
+        ],
+        "nativewind": [
+          "@rn-primitives/checkbox",
+          "cn",
+          "phosphor-react-native",
+          "react-native-svg"
+        ]
+      },
       "requires": [
         "icon"
       ],
       "files": [
         "components/ui/checkbox.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "collapsible",
       "type": "ui",
       "title": "Collapsible",
-      "dependencies": [
-        "@rn-primitives/collapsible"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/collapsible"
+        ],
+        "nativewind": [
+          "@rn-primitives/collapsible"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/collapsible.tsx"
@@ -165,15 +262,26 @@
       "name": "context-menu",
       "type": "ui",
       "title": "Context Menu",
-      "dependencies": [
-        "@rn-primitives/context-menu",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/context-menu",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/context-menu",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "native-only-animated-view",
@@ -181,42 +289,70 @@
       ],
       "files": [
         "components/ui/context-menu.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "dialog",
       "type": "ui",
       "title": "Dialog",
-      "dependencies": [
-        "@rn-primitives/dialog",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/dialog",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/dialog",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "native-only-animated-view"
       ],
       "files": [
         "components/ui/dialog.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "dropdown-menu",
       "type": "ui",
       "title": "Dropdown Menu",
-      "dependencies": [
-        "@rn-primitives/dropdown-menu",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/dropdown-menu",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/dropdown-menu",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "native-only-animated-view",
@@ -224,64 +360,104 @@
       ],
       "files": [
         "components/ui/dropdown-menu.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "hover-card",
       "type": "ui",
       "title": "Hover Card",
-      "dependencies": [
-        "@rn-primitives/hover-card",
-        "cn",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/hover-card",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/hover-card",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "native-only-animated-view",
         "text"
       ],
       "files": [
         "components/ui/hover-card.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "icon",
       "type": "ui",
       "title": "Icon",
-      "dependencies": [
-        "cn",
-        "phosphor-react-native",
-        "react-native-svg",
-        "uniwind"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn",
+          "phosphor-react-native",
+          "react-native-svg",
+          "uniwind"
+        ],
+        "nativewind": [
+          "cn",
+          "nativewind",
+          "phosphor-react-native",
+          "react-native-svg"
+        ]
+      },
       "requires": [
         "text"
       ],
       "files": [
         "components/ui/icon.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "input",
       "type": "ui",
       "title": "Input",
-      "dependencies": [
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn"
+        ],
+        "nativewind": [
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/input.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "label",
       "type": "ui",
       "title": "Label",
-      "dependencies": [
-        "@rn-primitives/label",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/label",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/label",
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/label.tsx"
@@ -291,16 +467,28 @@
       "name": "menubar",
       "type": "ui",
       "title": "Menubar",
-      "dependencies": [
-        "@rn-primitives/menubar",
-        "@rn-primitives/portal",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/menubar",
+          "@rn-primitives/portal",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/menubar",
+          "@rn-primitives/portal",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "native-only-animated-view",
@@ -308,16 +496,25 @@
       ],
       "files": [
         "components/ui/menubar.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "native-only-animated-view",
       "type": "ui",
       "title": "Native Only Animated View",
-      "dependencies": [
-        "react-native-reanimated",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "react-native-reanimated",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "react-native-reanimated",
+          "react-native-worklets"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/native-only-animated-view.tsx"
@@ -327,31 +524,51 @@
       "name": "popover",
       "type": "ui",
       "title": "Popover",
-      "dependencies": [
-        "@rn-primitives/popover",
-        "cn",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/popover",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/popover",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "native-only-animated-view",
         "text"
       ],
       "files": [
         "components/ui/popover.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "progress",
       "type": "ui",
       "title": "Progress",
-      "dependencies": [
-        "@rn-primitives/progress",
-        "cn",
-        "react-native-reanimated",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/progress",
+          "cn",
+          "react-native-reanimated",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/progress",
+          "cn",
+          "react-native-reanimated",
+          "react-native-worklets"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/progress.tsx"
@@ -361,28 +578,48 @@
       "name": "radio-group",
       "type": "ui",
       "title": "Radio Group",
-      "dependencies": [
-        "@rn-primitives/radio-group",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/radio-group",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/radio-group",
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/radio-group.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "select",
       "type": "ui",
       "title": "Select",
-      "dependencies": [
-        "@rn-primitives/select",
-        "cn",
-        "phosphor-react-native",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-svg",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/select",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/select",
+          "cn",
+          "phosphor-react-native",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-svg",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "icon",
         "native-only-animated-view",
@@ -390,16 +627,25 @@
       ],
       "files": [
         "components/ui/select.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "separator",
       "type": "ui",
       "title": "Separator",
-      "dependencies": [
-        "@rn-primitives/separator",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/separator",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/separator",
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/separator.tsx"
@@ -409,11 +655,18 @@
       "name": "skeleton",
       "type": "ui",
       "title": "Skeleton",
-      "dependencies": [
-        "cn",
-        "react-native-reanimated",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn",
+          "react-native-reanimated",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "cn",
+          "react-native-reanimated",
+          "react-native-worklets"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/skeleton.tsx"
@@ -423,39 +676,64 @@
       "name": "switch",
       "type": "ui",
       "title": "Switch",
-      "dependencies": [
-        "@rn-primitives/switch",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/switch",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/switch",
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/switch.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "tabs",
       "type": "ui",
       "title": "Tabs",
-      "dependencies": [
-        "@rn-primitives/tabs",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/tabs",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/tabs",
+          "cn"
+        ]
+      },
       "requires": [
         "text"
       ],
       "files": [
         "components/ui/tabs.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "text",
       "type": "ui",
       "title": "Text",
-      "dependencies": [
-        "@rn-primitives/slot",
-        "class-variance-authority",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/slot",
+          "class-variance-authority",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/slot",
+          "class-variance-authority",
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/text.tsx"
@@ -465,23 +743,38 @@
       "name": "textarea",
       "type": "ui",
       "title": "Textarea",
-      "dependencies": [
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "cn"
+        ],
+        "nativewind": [
+          "cn"
+        ]
+      },
       "requires": [],
       "files": [
         "components/ui/textarea.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "toggle-group",
       "type": "ui",
       "title": "Toggle Group",
-      "dependencies": [
-        "@rn-primitives/toggle-group",
-        "class-variance-authority",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/toggle-group",
+          "class-variance-authority",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/toggle-group",
+          "class-variance-authority",
+          "cn"
+        ]
+      },
       "requires": [
         "icon",
         "text",
@@ -495,30 +788,49 @@
       "name": "toggle",
       "type": "ui",
       "title": "Toggle",
-      "dependencies": [
-        "@rn-primitives/toggle",
-        "class-variance-authority",
-        "cn"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/toggle",
+          "class-variance-authority",
+          "cn"
+        ],
+        "nativewind": [
+          "@rn-primitives/toggle",
+          "class-variance-authority",
+          "cn"
+        ]
+      },
       "requires": [
         "icon",
         "text"
       ],
       "files": [
         "components/ui/toggle.tsx"
+      ],
+      "overrides": [
+        "nativewind"
       ]
     },
     {
       "name": "tooltip",
       "type": "ui",
       "title": "Tooltip",
-      "dependencies": [
-        "@rn-primitives/tooltip",
-        "cn",
-        "react-native-reanimated",
-        "react-native-screens",
-        "react-native-worklets"
-      ],
+      "dependencies": {
+        "uniwind": [
+          "@rn-primitives/tooltip",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "@rn-primitives/tooltip",
+          "cn",
+          "react-native-reanimated",
+          "react-native-screens",
+          "react-native-worklets"
+        ]
+      },
       "requires": [
         "native-only-animated-view",
         "text"

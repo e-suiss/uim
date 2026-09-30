@@ -45,7 +45,7 @@
   },
   "overrides": [
     {
-      "includes": ["styles/global.css"],
+      "includes": ["styles/uniwind.css"],
       "linter": {
         "rules": {
           "suspicious": {

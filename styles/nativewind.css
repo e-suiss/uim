@@ -1,0 +1,105 @@
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
+@import "nativewind/theme";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #000000;
+  --color-card: #ffffff;
+  --color-card-foreground: #000000;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #000000;
+  --color-primary: #0088ff;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: rgb(118 118 128 / 0.12);
+  --color-secondary-foreground: #000000;
+  --color-muted: #f2f2f7;
+  --color-muted-foreground: rgb(60 60 67 / 0.6);
+  --color-accent: rgb(118 118 128 / 0.12);
+  --color-accent-foreground: #000000;
+  --color-destructive: #ff383c;
+  --color-border: rgb(60 60 67 / 0.12);
+  --color-input: #c6c6c8;
+  --color-ring: #0088ff;
+  --color-chart-1: #00c0e8;
+  --color-chart-2: #0088ff;
+  --color-chart-3: #6155f5;
+  --color-chart-4: #cb30e0;
+  --color-chart-5: #ff2d55;
+  --color-border-50: rgb(60 60 67 / 0.06);
+  --color-destructive-10: rgb(255 56 60 / 0.1);
+  --color-destructive-20: rgb(255 56 60 / 0.2);
+  --color-destructive-30: rgb(255 56 60 / 0.3);
+  --color-destructive-40: rgb(255 56 60 / 0.4);
+  --color-destructive-50: rgb(255 56 60 / 0.5);
+  --color-destructive-90: rgb(255 56 60 / 0.9);
+  --color-foreground-5: rgb(0 0 0 / 0.05);
+  --color-foreground-10: rgb(0 0 0 / 0.1);
+  --color-foreground-60: rgb(0 0 0 / 0.6);
+  --color-input-30: rgb(198 198 200 / 0.3);
+  --color-input-50: rgb(198 198 200 / 0.5);
+  --color-input-90: rgb(198 198 200 / 0.9);
+  --color-muted-50: rgb(242 242 247 / 0.5);
+  --color-primary-80: rgb(0 136 255 / 0.8);
+  --color-ring-30: rgb(0 136 255 / 0.3);
+  --color-ring-50: rgb(0 136 255 / 0.5);
+  --color-secondary-80: rgb(118 118 128 / 0.096);
+  --radius-sm: 0.45rem;
+  --radius-md: 0.6rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1.05rem;
+  --radius-2xl: 1.35rem;
+  --radius-3xl: 1.65rem;
+  --radius-4xl: 1.95rem;
+}
+
+:root {
+  font-size: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #000000;
+    --color-foreground: #ffffff;
+    --color-card: #1c1c1e;
+    --color-card-foreground: #ffffff;
+    --color-popover: #2c2c2e;
+    --color-popover-foreground: #ffffff;
+    --color-primary: #0091ff;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: rgb(118 118 128 / 0.24);
+    --color-secondary-foreground: #ffffff;
+    --color-muted: #1c1c1e;
+    --color-muted-foreground: rgb(235 235 245 / 0.6);
+    --color-accent: rgb(118 118 128 / 0.24);
+    --color-accent-foreground: #ffffff;
+    --color-destructive: #ff4245;
+    --color-border: rgb(84 84 88 / 0.5);
+    --color-input: #38383a;
+    --color-ring: #0091ff;
+    --color-chart-1: #3cd3fe;
+    --color-chart-2: #0091ff;
+    --color-chart-3: #6d7cff;
+    --color-chart-4: #db34f2;
+    --color-chart-5: #ff375f;
+    --color-border-50: rgb(84 84 88 / 0.25);
+    --color-destructive-10: rgb(255 66 69 / 0.1);
+    --color-destructive-20: rgb(255 66 69 / 0.2);
+    --color-destructive-30: rgb(255 66 69 / 0.3);
+    --color-destructive-40: rgb(255 66 69 / 0.4);
+    --color-destructive-50: rgb(255 66 69 / 0.5);
+    --color-destructive-90: rgb(255 66 69 / 0.9);
+    --color-foreground-5: rgb(255 255 255 / 0.05);
+    --color-foreground-10: rgb(255 255 255 / 0.1);
+    --color-foreground-60: rgb(255 255 255 / 0.6);
+    --color-input-30: rgb(56 56 58 / 0.3);
+    --color-input-50: rgb(56 56 58 / 0.5);
+    --color-input-90: rgb(56 56 58 / 0.9);
+    --color-muted-50: rgb(28 28 30 / 0.5);
+    --color-primary-80: rgb(0 145 255 / 0.8);
+    --color-ring-30: rgb(0 145 255 / 0.3);
+    --color-ring-50: rgb(0 145 255 / 0.5);
+    --color-secondary-80: rgb(118 118 128 / 0.192);
+  }
+}

@@ -1,15 +1,30 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import path from "node:path"
 
+import { ensureBabelPlugin } from "./babel.mjs"
 import { formatDiff } from "./diff.mjs"
+import { ensurePodDeploymentTarget } from "./ios.mjs"
 import { CliError, color, list, note, step } from "./output.mjs"
-import { detectProject, findAliasRoot, install } from "./project.mjs"
-import { fetchRegistry, fetchText, resolveItems } from "./registry.mjs"
+import {
+  detectProject,
+  detectStyling,
+  findAliasRoot,
+  install,
+} from "./project.mjs"
+import {
+  fetchRegistry,
+  fetchText,
+  resolveItems,
+  sourceOf,
+} from "./registry.mjs"
 
-async function fetchFiles(items) {
+async function fetchFiles(registry, items, styling) {
   return Promise.all(
     items.flatMap((item) =>
-      item.files.map(async (file) => ({ file, content: await fetchText(file) }))
+      item.files.map(async (file) => ({
+        file,
+        content: await fetchText(sourceOf(registry, item, file, styling)),
+      }))
     )
   )
 }
@@ -19,10 +34,10 @@ export async function installItems(
   root,
   registry,
   names,
-  { overwrite = false } = {}
+  { overwrite = false, styling }
 ) {
   const items = resolveItems(registry, names)
-  const files = await fetchFiles(items)
+  const files = await fetchFiles(registry, items, styling)
 
   const created = []
   const updated = []
@@ -45,10 +60,21 @@ export async function installItems(
     }
   }
 
-  const installed = install(
-    project,
-    items.flatMap((item) => item.dependencies)
-  )
+  const dependencies = items.flatMap((item) => item.dependencies[styling])
+  const installed = install(project, dependencies)
+  const manual = [
+    ...(dependencies.includes("react-native-reanimated")
+      ? ensureBabelPlugin(
+          project,
+          "react-native-worklets/plugin",
+          '"react-native-worklets/plugin"',
+          { last: true }
+        )
+      : []),
+    ...(dependencies.includes("react-native-svg")
+      ? ensurePodDeploymentTarget(project)
+      : []),
+  ]
 
   if (created.length) {
     step(`Created ${created.length} file${created.length === 1 ? "" : "s"}:`)
@@ -68,16 +94,20 @@ export async function installItems(
   if (!created.length && !updated.length && !skipped.length) {
     step("Already up to date.")
   }
+  for (const message of manual) note(message)
+  if (installed.length && project.framework === "react-native") {
+    note("Run `cd ios && pod install` before building for iOS.")
+  }
 }
 
-async function showDiff(project, root, registry, names) {
+async function showDiff(project, root, registry, names, styling) {
   const requested = new Set(names)
   const items = resolveItems(registry, names).filter((item) =>
     requested.has(item.name)
   )
   let changes = 0
 
-  for (const { file, content } of await fetchFiles(items)) {
+  for (const { file, content } of await fetchFiles(registry, items, styling)) {
     const target = path.join(root, file)
     const relative = path.relative(project.cwd, target)
     if (!existsSync(target)) {
@@ -102,6 +132,13 @@ export async function add(names, options) {
     )
   }
 
+  const styling = detectStyling(project, options.styling)
+  if (!styling) {
+    throw new CliError(
+      "Neither Uniwind nor NativeWind is installed. Run `npx @esuiss/uim init` first."
+    )
+  }
+
   const registry = await fetchRegistry()
   const selected = options.all ? registry.items.map((item) => item.name) : names
   if (!selected.length) {
@@ -110,6 +147,10 @@ export async function add(names, options) {
     )
   }
 
-  if (options.diff) await showDiff(project, root, registry, selected)
-  else await installItems(project, root, registry, selected, options)
+  if (options.diff) await showDiff(project, root, registry, selected, styling)
+  else
+    await installItems(project, root, registry, selected, {
+      overwrite: options.overwrite,
+      styling,
+    })
 }

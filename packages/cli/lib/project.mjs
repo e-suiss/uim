@@ -12,6 +12,15 @@ const LOCKFILES = [
   ["package-lock.json", "npm"],
 ]
 
+const INSTALL_ARGS = {
+  npm: { command: "install", dev: "--save-dev", exact: "--save-exact" },
+  pnpm: { command: "add", dev: "--save-dev", exact: "--save-exact" },
+  yarn: { command: "add", dev: "--dev", exact: "--exact" },
+  bun: { command: "add", dev: "--dev", exact: "--exact" },
+}
+
+export const STYLINGS = ["uniwind", "nativewind"]
+
 const RUNNERS = {
   npm: ["npx"],
   pnpm: ["pnpm", "exec"],
@@ -40,18 +49,18 @@ export function detectProject(cwd) {
   const manifestPath = path.join(cwd, "package.json")
   if (!existsSync(manifestPath)) {
     throw new CliError(
-      "No package.json found. Run this inside an Expo project."
+      "No package.json found. Run this inside a React Native or Expo project."
     )
   }
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"))
   const packages = { ...manifest.dependencies, ...manifest.devDependencies }
-  if (!packages.expo) {
-    throw new CliError("Only Expo projects are supported.")
-  }
-  if (packages.nativewind) {
-    throw new CliError(
-      "This project uses NativeWind. esuiss components are built on Uniwind."
-    )
+  const framework = packages.expo
+    ? "expo"
+    : packages["react-native"]
+      ? "react-native"
+      : null
+  if (!framework) {
+    throw new CliError("Only React Native and Expo projects are supported.")
   }
   if (!existsSync(path.join(cwd, "tsconfig.json"))) {
     throw new CliError(
@@ -60,6 +69,7 @@ export function detectProject(cwd) {
   }
   return {
     cwd,
+    framework,
     packages,
     packageManager: detectPackageManager(cwd),
   }
@@ -74,25 +84,68 @@ export function findAliasRoot(cwd) {
   return path.resolve(cwd, options.baseUrl ?? ".", target.replace(/\/?\*$/, ""))
 }
 
-export function run(project, args) {
-  const [command, ...prefix] = RUNNERS[project.packageManager]
-  const fullArgs = [...prefix, ...args]
-  const result = spawnSync(command, fullArgs, {
+function spawn(project, command, args) {
+  const result = spawnSync(command, args, {
     cwd: project.cwd,
     stdio: "inherit",
     shell: process.platform === "win32",
   })
   if (result.status !== 0) {
-    throw new CliError(`${command} ${fullArgs.join(" ")} failed.`)
+    throw new CliError(`${command} ${args.join(" ")} failed.`)
   }
 }
 
-export function install(project, packages) {
+export function reinstall(project) {
+  spawn(project, project.packageManager, ["install"])
+}
+
+export function run(project, args) {
+  const [command, ...prefix] = RUNNERS[project.packageManager]
+  spawn(project, command, [...prefix, ...args])
+}
+
+function packageOf(spec) {
+  return spec.replace(/(?!^)@.*$/, "")
+}
+
+export function detectStyling(project, requested) {
+  if (requested) {
+    if (!STYLINGS.includes(requested)) {
+      throw new CliError(
+        `Unknown styling "${requested}". Use ${STYLINGS.join(" or ")}.`
+      )
+    }
+    return requested
+  }
+  const installed = STYLINGS.filter((name) => project.packages[name])
+  if (installed.length > 1) {
+    throw new CliError(
+      "Both Uniwind and NativeWind are installed. Pick one with --styling uniwind or --styling nativewind."
+    )
+  }
+  return installed[0] ?? null
+}
+
+export function install(
+  project,
+  packages,
+  { dev = false, exact = false } = {}
+) {
   const missing = [...new Set(packages)].filter(
-    (name) => !project.packages[name]
+    (spec) => !project.packages[packageOf(spec)]
   )
   if (!missing.length) return []
-  run(project, ["expo", "install", ...missing])
-  for (const name of missing) project.packages[name] = "*"
-  return missing
+  if (project.framework === "expo" && !dev && !exact) {
+    run(project, ["expo", "install", ...missing])
+  } else {
+    const flags = INSTALL_ARGS[project.packageManager]
+    spawn(project, project.packageManager, [
+      flags.command,
+      ...(dev ? [flags.dev] : []),
+      ...(exact ? [flags.exact] : []),
+      ...missing,
+    ])
+  }
+  for (const spec of missing) project.packages[packageOf(spec)] = "*"
+  return missing.map(packageOf)
 }

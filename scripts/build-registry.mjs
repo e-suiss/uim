@@ -4,7 +4,10 @@ import path from "node:path"
 
 const ROOT = process.cwd()
 const OUTPUT = path.join(ROOT, "registry.json")
-const STYLESHEET = "styles/global.css"
+const STYLES = {
+  uniwind: { stylesheet: "styles/uniwind.css" },
+  nativewind: { stylesheet: "styles/nativewind.css", directory: "nativewind" },
+}
 const IGNORED_PACKAGES = new Set(["react", "react-native"])
 const COMPANIONS = {
   "phosphor-react-native": ["react-native-svg"],
@@ -36,11 +39,8 @@ function collectImports(code) {
   return [...specifiers]
 }
 
-async function buildItem(dir, type, file) {
-  const filePath = path.posix.join(dir, file)
-  const name = path.basename(file, path.extname(file))
+async function analyze(filePath, name) {
   const code = await readFile(path.join(ROOT, filePath), "utf8")
-
   const dependencies = new Set()
   const requires = new Set()
 
@@ -57,14 +57,34 @@ async function buildItem(dir, type, file) {
       for (const companion of COMPANIONS[pkg] ?? []) dependencies.add(companion)
     }
   }
+  return { dependencies, requires }
+}
+
+async function buildItem(dir, type, file) {
+  const filePath = path.posix.join(dir, file)
+  const name = path.basename(file, path.extname(file))
+  const requires = new Set()
+  const dependencies = {}
+  const overrides = []
+
+  for (const [style, { directory }] of Object.entries(STYLES)) {
+    const override = directory && path.posix.join(directory, filePath)
+    const source =
+      override && existsSync(path.join(ROOT, override)) ? override : filePath
+    if (source !== filePath) overrides.push(style)
+    const analysis = await analyze(source, name)
+    dependencies[style] = [...analysis.dependencies].sort()
+    for (const required of analysis.requires) requires.add(required)
+  }
 
   return {
     name,
     type,
     title: toTitle(name),
-    dependencies: [...dependencies].sort(),
+    dependencies,
     requires: [...requires].sort(),
     files: [filePath],
+    ...(overrides.length ? { overrides } : {}),
   }
 }
 
@@ -75,8 +95,10 @@ function validate(items) {
       .filter((required) => !names.has(required))
       .map((required) => `${item.name} requires missing item "${required}"`)
   )
-  if (!existsSync(path.join(ROOT, STYLESHEET))) {
-    problems.push(`missing ${STYLESHEET}`)
+  for (const { stylesheet } of Object.values(STYLES)) {
+    if (!existsSync(path.join(ROOT, stylesheet))) {
+      problems.push(`missing ${stylesheet}`)
+    }
   }
   return problems
 }
@@ -99,7 +121,7 @@ if (problems.length) {
 const registry = {
   name: "esuiss-uim",
   homepage: "https://github.com/e-suiss/uim",
-  stylesheet: STYLESHEET,
+  styles: STYLES,
   items,
 }
 const output = `${JSON.stringify(registry, null, 2)}\n`
