@@ -81,19 +81,14 @@ function AccordionTrigger({
 }) {
   const { isExpanded } = AccordionPrimitive.useItemContext()
 
-  const progress = useDerivedValue(
-    () =>
-      isExpanded
-        ? withTiming(1, { duration: 250 })
-        : withTiming(0, { duration: 200 }),
-    [isExpanded]
+  const progress = useDerivedValue(() =>
+    isExpanded
+      ? withTiming(1, { duration: 250 })
+      : withTiming(0, { duration: 200 })
   )
-  const chevronStyle = useAnimatedStyle(
-    () => ({
-      transform: [{ rotate: `${progress.value * 180}deg` }],
-    }),
-    [progress]
-  )
+  const chevronStyle = useAnimatedStyle(() => ({
+    transform: [{ rotate: `${progress.value * 180}deg` }],
+  }))
 
   return (
     <TextClassContext.Provider
