@@ -31,8 +31,6 @@
   --color-destructive-10: rgb(255 56 60 / 0.1);
   --color-destructive-20: rgb(255 56 60 / 0.2);
   --color-destructive-30: rgb(255 56 60 / 0.3);
-  --color-destructive-40: rgb(255 56 60 / 0.4);
-  --color-destructive-50: rgb(255 56 60 / 0.5);
   --color-destructive-90: rgb(255 56 60 / 0.9);
   --color-foreground-5: rgb(0 0 0 / 0.05);
   --color-foreground-10: rgb(0 0 0 / 0.1);
@@ -42,9 +40,6 @@
   --color-input-90: rgb(198 198 200 / 0.9);
   --color-muted-50: rgb(242 242 247 / 0.5);
   --color-primary-80: rgb(0 136 255 / 0.8);
-  --color-ring-30: rgb(0 136 255 / 0.3);
-  --color-ring-50: rgb(0 136 255 / 0.5);
-  --color-secondary-80: rgb(118 118 128 / 0.096);
   --radius-sm: 0.45rem;
   --radius-md: 0.6rem;
   --radius-lg: 0.75rem;
@@ -87,8 +82,6 @@
     --color-destructive-10: rgb(255 66 69 / 0.1);
     --color-destructive-20: rgb(255 66 69 / 0.2);
     --color-destructive-30: rgb(255 66 69 / 0.3);
-    --color-destructive-40: rgb(255 66 69 / 0.4);
-    --color-destructive-50: rgb(255 66 69 / 0.5);
     --color-destructive-90: rgb(255 66 69 / 0.9);
     --color-foreground-5: rgb(255 255 255 / 0.05);
     --color-foreground-10: rgb(255 255 255 / 0.1);
@@ -98,8 +91,5 @@
     --color-input-90: rgb(56 56 58 / 0.9);
     --color-muted-50: rgb(28 28 30 / 0.5);
     --color-primary-80: rgb(0 145 255 / 0.8);
-    --color-ring-30: rgb(0 145 255 / 0.3);
-    --color-ring-50: rgb(0 145 255 / 0.5);
-    --color-secondary-80: rgb(118 118 128 / 0.192);
   }
 }

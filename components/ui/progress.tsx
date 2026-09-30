@@ -1,6 +1,5 @@
 import * as ProgressPrimitive from "@rn-primitives/progress"
 import { cn } from "cn"
-import { Platform, View } from "react-native"
 import Animated, {
   Extrapolation,
   interpolate,
@@ -32,36 +31,12 @@ function Progress({
 
 export { Progress }
 
-const Indicator = Platform.select({
-  web: WebIndicator,
-  native: NativeIndicator,
-  default: NullIndicator,
-})
-
 type IndicatorProps = {
   value: number | undefined | null
   className?: string
 }
 
-function WebIndicator({ value, className }: IndicatorProps) {
-  if (Platform.OS !== "web") {
-    return null
-  }
-
-  return (
-    <View
-      className={cn(
-        "h-full w-full flex-1 bg-primary transition-all",
-        className
-      )}
-      style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}
-    >
-      <ProgressPrimitive.Indicator className={cn("h-full w-full", className)} />
-    </View>
-  )
-}
-
-function NativeIndicator({ value, className }: IndicatorProps) {
+function Indicator({ value, className }: IndicatorProps) {
   const progress = useDerivedValue(() => value ?? 0)
 
   const indicator = useAnimatedStyle(() => {
@@ -73,10 +48,6 @@ function NativeIndicator({ value, className }: IndicatorProps) {
     }
   })
 
-  if (Platform.OS === "web") {
-    return null
-  }
-
   return (
     <ProgressPrimitive.Indicator asChild>
       <Animated.View
@@ -85,8 +56,4 @@ function NativeIndicator({ value, className }: IndicatorProps) {
       />
     </ProgressPrimitive.Indicator>
   )
-}
-
-function NullIndicator(_props: IndicatorProps) {
-  return null
 }

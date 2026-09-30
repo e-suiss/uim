@@ -2,7 +2,6 @@ import * as ToggleGroupPrimitive from "@rn-primitives/toggle-group"
 import type { VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import * as React from "react"
-import { Platform } from "react-native"
 import { Icon } from "@/components/ui/icon"
 import { TextClassContext } from "@/components/ui/text"
 import { toggleVariants } from "@/components/ui/toggle"
@@ -21,11 +20,7 @@ function ToggleGroup({
   VariantProps<typeof toggleVariants>) {
   return (
     <ToggleGroupPrimitive.Root
-      className={cn(
-        "flex-row items-center gap-2 self-start",
-        Platform.select({ web: "w-fit" }),
-        className
-      )}
+      className={cn("flex-row items-center gap-2 self-start", className)}
       {...props}
     >
       <ToggleGroupContext.Provider value={{ variant, size }}>
@@ -73,9 +68,6 @@ function ToggleGroupItem({
           ToggleGroupPrimitive.utils.getIsSelected(value, props.value) &&
             "bg-muted",
           "shrink-0",
-          Platform.select({
-            web: "focus:z-10 focus-visible:z-10",
-          }),
           className
         )}
         {...props}

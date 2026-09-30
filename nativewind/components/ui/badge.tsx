@@ -1,35 +1,18 @@
 import { Slot } from "@rn-primitives/slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
-import { Platform, View } from "react-native"
+import { View } from "react-native"
 import { TextClassContext } from "@/components/ui/text"
 
 const badgeVariants = cva(
-  cn(
-    "h-5 shrink-0 flex-row items-center justify-center gap-1 self-start overflow-hidden rounded-3xl border border-transparent px-2 py-0.5",
-    Platform.select({
-      web: "focus-visible:border-ring focus-visible:ring-ring-50 aria-invalid:ring-destructive-20 dark:aria-invalid:ring-destructive-40 aria-invalid:border-destructive w-fit whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] [&>svg]:pointer-events-none [&>svg]:size-3",
-    })
-  ),
+  "h-5 shrink-0 flex-row items-center justify-center gap-1 self-start overflow-hidden rounded-3xl border border-transparent px-2 py-0.5",
   {
     variants: {
       variant: {
-        default: cn(
-          "bg-primary",
-          Platform.select({ web: "[a&]:hover:bg-primary-80" })
-        ),
-        secondary: cn(
-          "bg-secondary",
-          Platform.select({ web: "[a&]:hover:bg-secondary-80" })
-        ),
-        destructive: cn(
-          "bg-destructive-10 dark:bg-destructive-20",
-          Platform.select({ web: "[a&]:hover:bg-destructive-20" })
-        ),
-        outline: cn(
-          "border-border",
-          Platform.select({ web: "[a&]:hover:bg-muted" })
-        ),
+        default: "bg-primary",
+        secondary: "bg-secondary",
+        destructive: "bg-destructive-10 dark:bg-destructive-20",
+        outline: "border-border",
       },
     },
     defaultVariants: {

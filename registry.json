@@ -65,8 +65,8 @@
         ]
       },
       "requires": [
+        "animated-view",
         "button",
-        "native-only-animated-view",
         "text"
       ],
       "files": [
@@ -101,6 +101,25 @@
       ],
       "overrides": [
         "nativewind"
+      ]
+    },
+    {
+      "name": "animated-view",
+      "type": "ui",
+      "title": "Animated View",
+      "dependencies": {
+        "uniwind": [
+          "react-native-reanimated",
+          "react-native-worklets"
+        ],
+        "nativewind": [
+          "react-native-reanimated",
+          "react-native-worklets"
+        ]
+      },
+      "requires": [],
+      "files": [
+        "components/ui/animated-view.tsx"
       ]
     },
     {
@@ -283,8 +302,8 @@
         ]
       },
       "requires": [
+        "animated-view",
         "icon",
-        "native-only-animated-view",
         "text"
       ],
       "files": [
@@ -319,8 +338,8 @@
         ]
       },
       "requires": [
-        "icon",
-        "native-only-animated-view"
+        "animated-view",
+        "icon"
       ],
       "files": [
         "components/ui/dialog.tsx"
@@ -354,8 +373,8 @@
         ]
       },
       "requires": [
+        "animated-view",
         "icon",
-        "native-only-animated-view",
         "text"
       ],
       "files": [
@@ -386,7 +405,7 @@
         ]
       },
       "requires": [
-        "native-only-animated-view",
+        "animated-view",
         "text"
       ],
       "files": [
@@ -490,8 +509,8 @@
         ]
       },
       "requires": [
+        "animated-view",
         "icon",
-        "native-only-animated-view",
         "text"
       ],
       "files": [
@@ -499,25 +518,6 @@
       ],
       "overrides": [
         "nativewind"
-      ]
-    },
-    {
-      "name": "native-only-animated-view",
-      "type": "ui",
-      "title": "Native Only Animated View",
-      "dependencies": {
-        "uniwind": [
-          "react-native-reanimated",
-          "react-native-worklets"
-        ],
-        "nativewind": [
-          "react-native-reanimated",
-          "react-native-worklets"
-        ]
-      },
-      "requires": [],
-      "files": [
-        "components/ui/native-only-animated-view.tsx"
       ]
     },
     {
@@ -541,7 +541,7 @@
         ]
       },
       "requires": [
-        "native-only-animated-view",
+        "animated-view",
         "text"
       ],
       "files": [
@@ -621,8 +621,8 @@
         ]
       },
       "requires": [
+        "animated-view",
         "icon",
-        "native-only-animated-view",
         "text"
       ],
       "files": [
@@ -806,9 +806,6 @@
       ],
       "files": [
         "components/ui/toggle.tsx"
-      ],
-      "overrides": [
-        "nativewind"
       ]
     },
     {
@@ -832,7 +829,7 @@
         ]
       },
       "requires": [
-        "native-only-animated-view",
+        "animated-view",
         "text"
       ],
       "files": [

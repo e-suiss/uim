@@ -1,11 +1,6 @@
 import * as ContextMenuPrimitive from "@rn-primitives/context-menu"
 import { cn } from "cn"
-import {
-  CaretDownIcon,
-  CaretRightIcon,
-  CaretUpIcon,
-  CheckIcon,
-} from "phosphor-react-native"
+import { CaretDownIcon, CaretUpIcon, CheckIcon } from "phosphor-react-native"
 import * as React from "react"
 import {
   Platform,
@@ -17,8 +12,8 @@ import {
 } from "react-native"
 import { FadeIn, ReduceMotion } from "react-native-reanimated"
 import { FullWindowOverlay as RNFullWindowOverlay } from "react-native-screens"
+import { AnimatedView } from "@/components/ui/animated-view"
 import { Icon } from "@/components/ui/icon"
-import { NativeOnlyAnimatedView } from "@/components/ui/native-only-animated-view"
 import { TextClassContext } from "@/components/ui/text"
 
 const ContextMenu = ContextMenuPrimitive.Root
@@ -39,8 +34,7 @@ function ContextMenuSubTrigger({
   inset?: boolean
 }) {
   const { open } = ContextMenuPrimitive.useSubContext()
-  const icon =
-    Platform.OS === "web" ? CaretRightIcon : open ? CaretUpIcon : CaretDownIcon
+  const icon = open ? CaretUpIcon : CaretDownIcon
   return (
     <TextClassContext.Provider
       value={cn(
@@ -51,11 +45,8 @@ function ContextMenuSubTrigger({
       <ContextMenuPrimitive.SubTrigger
         className={cn(
           "group flex-row items-center gap-2 rounded-2xl px-3 py-2 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           className,
-          open && cn("bg-accent", Platform.select({ native: "mb-1" })),
+          open && cn("bg-accent", "mb-1"),
           inset && "pl-9.5"
         )}
         {...props}
@@ -78,18 +69,15 @@ function ContextMenuSubContent({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.SubContent>) {
   return (
-    <NativeOnlyAnimatedView entering={FadeIn.reduceMotion(ReduceMotion.System)}>
+    <AnimatedView entering={FadeIn.reduceMotion(ReduceMotion.System)}>
       <ContextMenuPrimitive.SubContent
         className={cn(
           "min-w-36 rounded-3xl border border-foreground/5 bg-popover p-1.5 shadow-lg dark:border-foreground/10",
-          Platform.select({
-            web: "animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 fade-in-0 data-[state=closed]:zoom-out-95 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-context-menu-content-transform-origin) z-50 overflow-hidden duration-100",
-          }),
           className
         )}
         {...props}
       />
-    </NativeOnlyAnimatedView>
+    </AnimatedView>
   )
 }
 
@@ -111,19 +99,18 @@ function ContextMenuContent({
     <ContextMenuPrimitive.Portal hostName={portalHost}>
       <FullWindowOverlay>
         <ContextMenuPrimitive.Overlay
-          style={Platform.select({
-            web: overlayStyle ?? undefined,
-            native: overlayStyle
+          style={
+            overlayStyle
               ? StyleSheet.flatten([
                   StyleSheet.absoluteFill,
                   overlayStyle as typeof StyleSheet.absoluteFill,
                 ])
-              : StyleSheet.absoluteFill,
-          })}
+              : StyleSheet.absoluteFill
+          }
           className={overlayClassName}
-          asChild={Platform.OS !== "web"}
+          asChild
         >
-          <NativeOnlyAnimatedView
+          <AnimatedView
             entering={FadeIn.reduceMotion(ReduceMotion.System)}
             as="Pressable"
           >
@@ -131,19 +118,12 @@ function ContextMenuContent({
               <ContextMenuPrimitive.Content
                 className={cn(
                   "min-w-48 rounded-3xl border border-foreground/5 bg-popover p-1.5 shadow-lg dark:border-foreground/10",
-                  Platform.select({
-                    web: cn(
-                      "animate-in fade-in-0 zoom-in-95 max-h-(--radix-context-menu-content-available-height) origin-(--radix-context-menu-content-transform-origin) z-50 cursor-default overflow-y-auto overflow-x-hidden outline-none duration-100",
-                      props.side === "bottom" && "slide-in-from-top-2",
-                      props.side === "top" && "slide-in-from-bottom-2"
-                    ),
-                  }),
                   className
                 )}
                 {...props}
               />
             </TextClassContext.Provider>
-          </NativeOnlyAnimatedView>
+          </AnimatedView>
         </ContextMenuPrimitive.Overlay>
       </FullWindowOverlay>
     </ContextMenuPrimitive.Portal>
@@ -170,13 +150,6 @@ function ContextMenuItem({
       <ContextMenuPrimitive.Item
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl px-3 py-2 active:bg-accent",
-          Platform.select({
-            web: cn(
-              "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-              variant === "destructive" &&
-                "hover:bg-destructive/10 focus:bg-destructive/10 dark:hover:bg-destructive/20 dark:focus:bg-destructive/20"
-            ),
-          }),
           variant === "destructive" &&
             "active:bg-destructive/10 dark:active:bg-destructive/20",
           props.disabled && "opacity-50",
@@ -201,9 +174,6 @@ function ContextMenuCheckboxItem({
       <ContextMenuPrimitive.CheckboxItem
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           props.disabled && "opacity-50",
           className
         )}
@@ -211,13 +181,7 @@ function ContextMenuCheckboxItem({
       >
         <View className="absolute right-2 size-4 items-center justify-center">
           <ContextMenuPrimitive.ItemIndicator>
-            <Icon
-              as={CheckIcon}
-              className={cn(
-                "size-4 text-foreground",
-                Platform.select({ web: "pointer-events-none" })
-              )}
-            />
+            <Icon as={CheckIcon} className="size-4 text-foreground" />
           </ContextMenuPrimitive.ItemIndicator>
         </View>
         {children}
@@ -238,9 +202,6 @@ function ContextMenuRadioItem({
       <ContextMenuPrimitive.RadioItem
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           props.disabled && "opacity-50",
           className
         )}
@@ -248,13 +209,7 @@ function ContextMenuRadioItem({
       >
         <View className="absolute right-2 size-4 items-center justify-center">
           <ContextMenuPrimitive.ItemIndicator>
-            <Icon
-              as={CheckIcon}
-              className={cn(
-                "size-4 text-foreground",
-                Platform.select({ web: "pointer-events-none" })
-              )}
-            />
+            <Icon as={CheckIcon} className="size-4 text-foreground" />
           </ContextMenuPrimitive.ItemIndicator>
         </View>
         {children}

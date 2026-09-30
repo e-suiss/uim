@@ -1,12 +1,7 @@
 import * as MenubarPrimitive from "@rn-primitives/menubar"
 import { Portal } from "@rn-primitives/portal"
 import { cn } from "cn"
-import {
-  CaretDownIcon,
-  CaretRightIcon,
-  CaretUpIcon,
-  CheckIcon,
-} from "phosphor-react-native"
+import { CaretDownIcon, CaretUpIcon, CheckIcon } from "phosphor-react-native"
 import * as React from "react"
 import {
   Platform,
@@ -19,8 +14,8 @@ import {
 } from "react-native"
 import { FadeIn, ReduceMotion } from "react-native-reanimated"
 import { FullWindowOverlay as RNFullWindowOverlay } from "react-native-screens"
+import { AnimatedView } from "@/components/ui/animated-view"
 import { Icon } from "@/components/ui/icon"
-import { NativeOnlyAnimatedView } from "@/components/ui/native-only-animated-view"
 import { TextClassContext } from "@/components/ui/text"
 
 const MenubarMenu = MenubarPrimitive.Menu
@@ -60,7 +55,7 @@ function Menubar({
 
   return (
     <>
-      {Platform.OS !== "web" && value ? (
+      {value ? (
         <Portal name={`menubar-overlay-${id}`}>
           <Pressable
             onPress={() => onValueChange(undefined)}
@@ -89,15 +84,10 @@ function MenubarTrigger({
   const { value: itemValue } = MenubarPrimitive.useMenuContext()
 
   return (
-    <TextClassContext.Provider
-      value={cn("select-none text-sm font-medium text-foreground")}
-    >
+    <TextClassContext.Provider value="select-none text-sm font-medium text-foreground">
       <MenubarPrimitive.Trigger
         className={cn(
           "group flex-row items-center rounded-2xl px-2 py-0.75 active:bg-muted",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-muted",
-          }),
           value === itemValue && "bg-muted",
           className
         )}
@@ -119,8 +109,7 @@ function MenubarSubTrigger({
   inset?: boolean
 }) {
   const { open } = MenubarPrimitive.useSubContext()
-  const icon =
-    Platform.OS === "web" ? CaretRightIcon : open ? CaretUpIcon : CaretDownIcon
+  const icon = open ? CaretUpIcon : CaretDownIcon
   return (
     <TextClassContext.Provider
       value={cn(
@@ -131,9 +120,6 @@ function MenubarSubTrigger({
       <MenubarPrimitive.SubTrigger
         className={cn(
           "group flex-row items-center gap-2 rounded-2xl px-3 py-2 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           className,
           open && "bg-accent",
           inset && "pl-9.5"
@@ -158,18 +144,15 @@ function MenubarSubContent({
   ...props
 }: React.ComponentProps<typeof MenubarPrimitive.SubContent>) {
   return (
-    <NativeOnlyAnimatedView entering={FadeIn.reduceMotion(ReduceMotion.System)}>
+    <AnimatedView entering={FadeIn.reduceMotion(ReduceMotion.System)}>
       <MenubarPrimitive.SubContent
         className={cn(
           "min-w-32 rounded-3xl border border-foreground/5 bg-popover p-1.5 shadow-lg dark:border-foreground/10",
-          Platform.select({
-            web: "animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 fade-in-0 data-[state=closed]:zoom-out-95 zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-context-menu-content-transform-origin) z-50 overflow-hidden duration-100",
-          }),
           className
         )}
         {...props}
       />
-    </NativeOnlyAnimatedView>
+    </AnimatedView>
   )
 }
 
@@ -190,7 +173,7 @@ function MenubarContent({
   return (
     <MenubarPrimitive.Portal hostName={portalHost}>
       <FullWindowOverlay>
-        <NativeOnlyAnimatedView
+        <AnimatedView
           as="Pressable"
           accessible={false}
           entering={FadeIn.reduceMotion(ReduceMotion.System)}
@@ -201,13 +184,6 @@ function MenubarContent({
             <MenubarPrimitive.Content
               className={cn(
                 "min-w-48 rounded-3xl border border-foreground/5 bg-popover p-1.5 shadow-lg dark:border-foreground/10",
-                Platform.select({
-                  web: cn(
-                    "animate-in fade-in-0 zoom-in-95 max-h-(--radix-context-menu-content-available-height) origin-(--radix-context-menu-content-transform-origin) z-50 cursor-default overflow-y-auto overflow-x-hidden outline-none duration-100",
-                    props.side === "bottom" && "slide-in-from-top-2",
-                    props.side === "top" && "slide-in-from-bottom-2"
-                  ),
-                }),
                 className
               )}
               align={align}
@@ -216,7 +192,7 @@ function MenubarContent({
               {...props}
             />
           </TextClassContext.Provider>
-        </NativeOnlyAnimatedView>
+        </AnimatedView>
       </FullWindowOverlay>
     </MenubarPrimitive.Portal>
   )
@@ -242,13 +218,6 @@ function MenubarItem({
       <MenubarPrimitive.Item
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl px-3 py-2 active:bg-accent",
-          Platform.select({
-            web: cn(
-              "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-              variant === "destructive" &&
-                "hover:bg-destructive/10 focus:bg-destructive/10 dark:hover:bg-destructive/20 dark:focus:bg-destructive/20"
-            ),
-          }),
           variant === "destructive" &&
             "active:bg-destructive/10 dark:active:bg-destructive/20",
           props.disabled && "opacity-50",
@@ -273,9 +242,6 @@ function MenubarCheckboxItem({
       <MenubarPrimitive.CheckboxItem
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-3 pl-9.5 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           props.disabled && "opacity-50",
           className
         )}
@@ -283,13 +249,7 @@ function MenubarCheckboxItem({
       >
         <View className="absolute left-3 size-4 items-center justify-center">
           <MenubarPrimitive.ItemIndicator>
-            <Icon
-              as={CheckIcon}
-              className={cn(
-                "size-4 text-foreground",
-                Platform.select({ web: "pointer-events-none" })
-              )}
-            />
+            <Icon as={CheckIcon} className="size-4 text-foreground" />
           </MenubarPrimitive.ItemIndicator>
         </View>
         {children}
@@ -310,9 +270,6 @@ function MenubarRadioItem({
       <MenubarPrimitive.RadioItem
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-3 pl-9.5 active:bg-accent",
-          Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
-          }),
           props.disabled && "opacity-50",
           className
         )}
@@ -320,13 +277,7 @@ function MenubarRadioItem({
       >
         <View className="absolute left-3 size-4 items-center justify-center">
           <MenubarPrimitive.ItemIndicator>
-            <Icon
-              as={CheckIcon}
-              className={cn(
-                "size-4 text-foreground",
-                Platform.select({ web: "pointer-events-none" })
-              )}
-            />
+            <Icon as={CheckIcon} className="size-4 text-foreground" />
           </MenubarPrimitive.ItemIndicator>
         </View>
         {children}

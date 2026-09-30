@@ -4,8 +4,8 @@ import * as React from "react"
 import { Platform, View, type ViewProps } from "react-native"
 import { FadeIn, FadeOut, ReduceMotion } from "react-native-reanimated"
 import { FullWindowOverlay as RNFullWindowOverlay } from "react-native-screens"
+import { AnimatedView } from "@/components/ui/animated-view"
 import { buttonTextVariants, buttonVariants } from "@/components/ui/button"
-import { NativeOnlyAnimatedView } from "@/components/ui/native-only-animated-view"
 import { TextClassContext } from "@/components/ui/text"
 
 const AlertDialog = AlertDialogPrimitive.Root
@@ -32,15 +32,12 @@ function AlertDialogOverlay({
       <AlertDialogPrimitive.Overlay
         className={cn(
           "absolute top-0 right-0 bottom-0 left-0 z-50 flex items-center justify-center bg-black/30 p-4",
-          Platform.select({
-            web: "animate-in fade-in-0 fixed",
-          }),
           className
         )}
         {...props}
-        asChild={Platform.OS !== "web"}
+        asChild
       >
-        <NativeOnlyAnimatedView
+        <AnimatedView
           entering={FadeIn.duration(200)
             .delay(50)
             .reduceMotion(ReduceMotion.System)}
@@ -54,7 +51,7 @@ function AlertDialogOverlay({
           }}
         >
           {children}
-        </NativeOnlyAnimatedView>
+        </AnimatedView>
       </AlertDialogPrimitive.Overlay>
     </FullWindowOverlay>
   )
@@ -73,9 +70,6 @@ function AlertDialogContent({
         <AlertDialogPrimitive.Content
           className={cn(
             "z-50 w-full max-w-xs flex-col gap-6 rounded-4xl border border-foreground-5 bg-popover p-6 shadow-xl sm:max-w-md dark:border-foreground-10",
-            Platform.select({
-              web: "animate-in fade-in-0 zoom-in-95 outline-none duration-100",
-            }),
             className
           )}
           {...props}

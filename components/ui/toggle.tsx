@@ -2,25 +2,16 @@ import * as TogglePrimitive from "@rn-primitives/toggle"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
 import * as React from "react"
-import { Platform } from "react-native"
 import { Icon } from "@/components/ui/icon"
 import { TextClassContext } from "@/components/ui/text"
 
 const toggleVariants = cva(
-  cn(
-    "group flex-row items-center justify-center gap-1 rounded-3xl active:bg-muted",
-    Platform.select({
-      web: "inline-flex cursor-default whitespace-nowrap outline-none transition-colors hover:bg-muted focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/30 disabled:pointer-events-none aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none",
-    })
-  ),
+  "group flex-row items-center justify-center gap-1 rounded-3xl active:bg-muted",
   {
     variants: {
       variant: {
         default: "bg-transparent",
-        outline: cn(
-          "border border-input bg-transparent active:bg-muted",
-          Platform.select({ web: "hover:bg-muted" })
-        ),
+        outline: "border border-input bg-transparent active:bg-muted",
       },
       size: {
         default: "h-9 min-w-9 px-3",

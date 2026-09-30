@@ -1,7 +1,7 @@
 import * as AccordionPrimitive from "@rn-primitives/accordion"
 import { cn } from "cn"
 import { CaretDownIcon } from "phosphor-react-native"
-import { Platform, Pressable, View } from "react-native"
+import { Pressable } from "react-native"
 import Animated, {
   FadeOutUp,
   LayoutAnimationConfig,
@@ -28,7 +28,7 @@ function Accordion({
           "w-full flex-col overflow-hidden rounded-2xl border border-border",
           className
         )}
-        asChild={Platform.OS !== "web"}
+        asChild
       >
         <Animated.View layout={LinearTransition.duration(200)}>
           {children}
@@ -52,7 +52,6 @@ function AccordionItem({
     <AccordionPrimitive.Item
       className={cn(
         "border-b border-border",
-        Platform.select({ web: "last:border-b-0" }),
         isOpen && "bg-muted-50",
         className
       )}
@@ -62,15 +61,13 @@ function AccordionItem({
     >
       <Animated.View
         className="native:overflow-hidden"
-        layout={Platform.select({ native: LinearTransition.duration(200) })}
+        layout={LinearTransition.duration(200)}
       >
         {children}
       </Animated.View>
     </AccordionPrimitive.Item>
   )
 }
-
-const Trigger = Platform.OS === "web" ? View : Pressable
 
 function AccordionTrigger({
   className,
@@ -91,20 +88,12 @@ function AccordionTrigger({
   }))
 
   return (
-    <TextClassContext.Provider
-      value={cn(
-        "text-left text-sm font-medium text-foreground",
-        Platform.select({ web: "group-hover:underline" })
-      )}
-    >
+    <TextClassContext.Provider value="text-left text-sm font-medium text-foreground">
       <AccordionPrimitive.Header>
-        <AccordionPrimitive.Trigger {...props} asChild={Platform.OS !== "web"}>
-          <Trigger
+        <AccordionPrimitive.Trigger {...props} asChild>
+          <Pressable
             className={cn(
               "flex-row items-start justify-between gap-6 border border-transparent p-4 disabled:opacity-50",
-              Platform.select({
-                web: "flex flex-1 text-start outline-none transition-all hover:underline disabled:pointer-events-none",
-              }),
               className
             )}
           >
@@ -113,15 +102,10 @@ function AccordionTrigger({
               <Icon
                 as={CaretDownIcon}
                 size={16}
-                className={cn(
-                  "shrink-0 text-muted-foreground",
-                  Platform.select({
-                    web: "pointer-events-none",
-                  })
-                )}
+                className="shrink-0 text-muted-foreground"
               />
             </Animated.View>
-          </Trigger>
+          </Pressable>
         </AccordionPrimitive.Trigger>
       </AccordionPrimitive.Header>
     </TextClassContext.Provider>
@@ -133,22 +117,11 @@ function AccordionContent({
   children,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
-  const { isExpanded } = AccordionPrimitive.useItemContext()
   return (
     <TextClassContext.Provider value="text-sm text-foreground">
-      <AccordionPrimitive.Content
-        className={cn(
-          "overflow-hidden px-4",
-          Platform.select({
-            web: isExpanded ? "animate-accordion-down" : "animate-accordion-up",
-          })
-        )}
-        {...props}
-      >
+      <AccordionPrimitive.Content className="overflow-hidden px-4" {...props}>
         <Animated.View
-          exiting={Platform.select({
-            native: FadeOutUp.duration(200).reduceMotion(ReduceMotion.System),
-          })}
+          exiting={FadeOutUp.duration(200).reduceMotion(ReduceMotion.System)}
           className={cn("pt-0 pb-4", className)}
         >
           {children}

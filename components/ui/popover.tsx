@@ -4,7 +4,7 @@ import * as React from "react"
 import { Platform, StyleSheet } from "react-native"
 import { FadeIn, FadeOut, ReduceMotion } from "react-native-reanimated"
 import { FullWindowOverlay as RNFullWindowOverlay } from "react-native-screens"
-import { NativeOnlyAnimatedView } from "@/components/ui/native-only-animated-view"
+import { AnimatedView } from "@/components/ui/animated-view"
 import { TextClassContext } from "@/components/ui/text"
 
 const Popover = PopoverPrimitive.Root
@@ -26,11 +26,8 @@ function PopoverContent({
   return (
     <PopoverPrimitive.Portal hostName={portalHost}>
       <FullWindowOverlay>
-        <PopoverPrimitive.Overlay
-          style={Platform.select({ native: StyleSheet.absoluteFill })}
-          asChild={Platform.OS !== "web"}
-        >
-          <NativeOnlyAnimatedView
+        <PopoverPrimitive.Overlay style={StyleSheet.absoluteFill} asChild>
+          <AnimatedView
             entering={FadeIn.duration(200).reduceMotion(ReduceMotion.System)}
             exiting={FadeOut.reduceMotion(ReduceMotion.System)}
             as="Pressable"
@@ -40,20 +37,13 @@ function PopoverContent({
                 align={align}
                 sideOffset={sideOffset}
                 className={cn(
-                  "z-50 w-72 flex-col gap-4 rounded-3xl border border-foreground/5 bg-popover p-4 shadow-lg outline-hidden dark:border-foreground/10",
-                  Platform.select({
-                    web: cn(
-                      "animate-in fade-in-0 zoom-in-95 origin-(--radix-popover-content-transform-origin) cursor-auto duration-100",
-                      props.side === "bottom" && "slide-in-from-top-2",
-                      props.side === "top" && "slide-in-from-bottom-2"
-                    ),
-                  }),
+                  "z-50 w-72 flex-col gap-4 rounded-3xl border border-foreground/5 bg-popover p-4 shadow-lg dark:border-foreground/10",
                   className
                 )}
                 {...props}
               />
             </TextClassContext.Provider>
-          </NativeOnlyAnimatedView>
+          </AnimatedView>
         </PopoverPrimitive.Overlay>
       </FullWindowOverlay>
     </PopoverPrimitive.Portal>
