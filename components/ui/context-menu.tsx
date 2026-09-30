@@ -172,7 +172,7 @@ function ContextMenuItem({
           "group relative flex-row items-center gap-2.5 rounded-2xl px-3 py-2 active:bg-accent",
           Platform.select({
             web: cn(
-              "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+              "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
               variant === "destructive" &&
                 "hover:bg-destructive/10 focus:bg-destructive/10 dark:hover:bg-destructive/20 dark:focus:bg-destructive/20"
             ),
@@ -202,7 +202,7 @@ function ContextMenuCheckboxItem({
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 active:bg-accent",
           Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
           }),
           props.disabled && "opacity-50",
           className
@@ -239,7 +239,7 @@ function ContextMenuRadioItem({
         className={cn(
           "group relative flex-row items-center gap-2.5 rounded-2xl py-2 pr-8 pl-3 active:bg-accent",
           Platform.select({
-            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-[disabled]:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
+            web: "cursor-default outline-hidden hover:bg-accent focus:bg-accent data-disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0",
           }),
           props.disabled && "opacity-50",
           className
